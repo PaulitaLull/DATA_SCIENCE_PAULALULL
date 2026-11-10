@@ -1,0 +1,26 @@
+{
+	"nodes":[
+		{"id":"c","type":"text","text":"# LLM\n**Large Language Model**\n\nModelo que predice a partir del contexto previo","x":-210,"y":520,"width":420,"height":220,"color":"6"},
+		{"id":"l0","type":"text","text":"## 1. Qué es\n- Red neuronal con miles de millones de parámetros\n- Entrenada con texto masivo\n- Tarea base: predecir el siguiente token\n- Probabilístico: no \"sabe\", estima lo más probable","x":-1050,"y":0,"width":420,"height":300,"color":"4"},
+		{"id":"l1","type":"text","text":"## 2. Tokens y embeddings\n- Texto → tokens (trozos de palabra)\n- Cada token → vector (embedding)\n- Vectores cercanos = significado parecido\n- El coste y el límite se miden en tokens","x":-1050,"y":340,"width":420,"height":300,"color":"4"},
+		{"id":"l2","type":"text","text":"## 3. Arquitectura Transformer\n- Mecanismo de atención (self-attention)\n- Pondera qué tokens importan para cada otro\n- Capas apiladas + posición de los tokens\n- Procesa en paralelo (rápido de entrenar)","x":-1050,"y":680,"width":420,"height":300,"color":"3"},
+		{"id":"l3","type":"text","text":"## 4. Entrenamiento\n- Preentrenamiento: predecir tokens en texto masivo\n- Fine-tuning: ajuste a tareas o estilo\n- RLHF / feedback humano: alinear con preferencias\n- Parámetros = pesos aprendidos","x":-1050,"y":1020,"width":420,"height":300,"color":"3"},
+		{"id":"r0","type":"text","text":"## 5. Generación\n- Token a token (autorregresiva)\n- Temperatura: baja = determinista, alta = creativa\n- top-p / top-k: limitan qué tokens se muestrean\n- Misma entrada puede dar salidas distintas","x":510,"y":0,"width":420,"height":300,"color":"5"},
+		{"id":"r1","type":"text","text":"## 6. Contexto y prompting\n- Ventana de contexto = memoria de trabajo\n- Sin memoria entre chats por defecto\n- Prompt claro, ejemplos (few-shot), formato\n- Pedir razonamiento paso a paso","x":510,"y":340,"width":420,"height":300,"color":"5"},
+		{"id":"r2","type":"text","text":"## 7. Limitaciones\n- Alucinaciones: respuestas plausibles pero falsas\n- Conocimiento con fecha de corte\n- Sesgos de los datos de entrenamiento\n- Fallos en cálculo exacto y razonamiento largo","x":510,"y":680,"width":420,"height":300,"color":"1"},
+		{"id":"r3","type":"text","text":"## 8. Ampliar capacidades\n- RAG: buscar documentos y pasarlos como contexto\n- Tools / function calling: APIs, código, búsqueda\n- Agentes: LLM que planifica y ejecuta pasos\n- Evaluar siempre: benchmarks y casos propios","x":510,"y":1020,"width":420,"height":300,"color":"2"}
+	],
+	"edges":[
+		{"id":"el0","fromNode":"c","fromSide":"left","toNode":"l0","toSide":"right"},
+		{"id":"el1","fromNode":"c","fromSide":"left","toNode":"l1","toSide":"right"},
+		{"id":"el2","fromNode":"c","fromSide":"left","toNode":"l2","toSide":"right"},
+		{"id":"el3","fromNode":"c","fromSide":"left","toNode":"l3","toSide":"right"},
+		{"id":"er0","fromNode":"c","fromSide":"right","toNode":"r0","toSide":"left"},
+		{"id":"er1","fromNode":"c","fromSide":"right","toNode":"r1","toSide":"left"},
+		{"id":"er2","fromNode":"c","fromSide":"right","toNode":"r2","toSide":"left"},
+		{"id":"er3","fromNode":"c","fromSide":"right","toNode":"r3","toSide":"left"},
+		{"id":"x1","fromNode":"r3","fromSide":"top","toNode":"r2","toSide":"bottom","label":"mitiga"},
+		{"id":"x2","fromNode":"l1","fromSide":"bottom","toNode":"l2","toSide":"top","label":"entrada de"},
+		{"id":"x3","fromNode":"l2","fromSide":"bottom","toNode":"l3","toSide":"top","label":"se entrena"}
+	]
+}

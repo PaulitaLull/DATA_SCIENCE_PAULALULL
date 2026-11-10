@@ -1,0 +1,34 @@
+{
+	"nodes":[
+		{"id":"n0","type":"text","text":"## 0. Definir el problema\n- ¿Qué predigo (target) y para qué?\n- Target numérico continuo → regresión\n- Métrica de éxito (RMSE, MAE, R²)","x":0,"y":0,"width":400,"height":300,"color":"5"},
+		{"id":"n1","type":"text","text":"## 1. Carga e inspección\n- shape, head, info, describe\n- Tipos, significado,  nulos, duplicados\n- Revisar unidades y rangos","x":480,"y":0,"width":400,"height":300,"color":"5"},
+		{"id":"n2","type":"text","text":"## 2. Limpieza básica\n- Quitar duplicados e IDs\n- Corregir tipos (fechas, texto→número)\n- Unificar categorías\n- NO imputar ni escalar aún","x":960,"y":0,"width":400,"height":300,"color":"5"},
+		{"id":"n3","type":"text","text":"## 3. Split train / test\n- train_test_split (o por tiempo)\n- X e y (y como Serie)\n- Todo se aprende SOLO con train\n- EN ADELANTE Test intacto hasta el final","x":1440,"y":0,"width":400,"height":300,"color":"1"},
+		{"id":"n4","type":"text","text":"## 4. EDA (solo train)\n- Univariante: \n-Histogramas de frecuencias\n-Distribuciones normales (datos tal cual o con log) con boxplot\n- Bivariante: pairplot, corr con target\n- Multivariante: heatmap\n- Target: ¿conviene log?","x":1440,"y":380,"width":440,"height":300,"color":"4"},
+		{"id":"n5","type":"text","text":"## 5. Estadística inferencial\n- t-test, ANOVA, chi²\n- Correlación significativa (p-valor)\n- Intervalos de confianza","x":960,"y":380,"width":400,"height":300,"color":"4"},
+		{"id":"n6","type":"text","text":"## 6. Tratamiento de datos\n- Nulos: imputar o eliminar\n- Outliers: caparlos o tratarlos por separado\n- Transformaciones log, sqrt\n- Categóricas: one-hot / ordinal\n- Selección de variables finales para el modelo","x":480,"y":380,"width":400,"height":300,"color":"3"},
+		{"id":"n7","type":"text","text":"## 7. Escalado\n- StandardScaler / MinMaxScaler\n- fit en train, transform en train y test\n- Necesario para comparar coeficientes y para regularizar luego.\n- No en variables binarias","x":0,"y":380,"width":400,"height":300,"color":"3"},
+		{"id":"n8","type":"text","text":"## 8. Ajuste inicial\n- Baseline: regresión lineal múltiple (x features)\n- Instancio regresor y ajusto con train\n- Represento y(x) con el ajuste, e y(y-ajuste)\n- Si hay curvatura: PolynomialFeatures() + regresión y represento de nuevo\n- Más grado = más riesgo de sobreajuste\n- Polinomio: ajusta un hiperplano (cada combinación de features es un nuevo plano )en un espacio ampliado**, y ese hiperplano, visto desde el espacio original, **se ve como una curva","x":-20,"y":760,"width":420,"height":360,"color":"6"},
+		{"id":"n10","type":"text","text":"## 10. Regularización\n- Ridge (L2): reduce la magnitud de los pesos añadiendo lambda en la f.pérdida. un peq cambio en los pesos mejora mucho el sobreajuste.\n- Lasso (L1): elimina variables con pesos bajos reduciendo la dimensionalidad del problema\n- ElasticNet: mezcla\n- selección de alpha solo con train:  CV (RidgeCV, LassoCV)","x":960,"y":760,"width":400,"height":300,"color":"2"},
+		{"id":"n11","type":"text","text":"## 11. Selección del modelo\n- Validación cruzada (k-fold)\n- Lineal vs polinómico regularizado\n- Elegir el más simple que rinda bien","x":1440,"y":760,"width":400,"height":300,"color":"2"},
+		{"id":"n12","type":"text","text":"## 12. Evaluación final\n- Reentrenar con todo el train\n- Evaluar UNA sola vez en test\n- Interpretar coeficientes y limitaciones\n- Documentar decisiones","x":1440,"y":1140,"width":400,"height":300,"color":"1"},
+		{"id":"rules","type":"text","text":"## Reglas de oro\n- Split antes de aprender nada del dato\n- fit solo en train; en test solo transform/predict\n- Usa Pipeline para encadenar pasos\n- EDA y modelado son un ciclo: los residuos te devuelven al paso 6 u 8","x":960,"y":1140,"width":400,"height":300,"color":"1"},
+		{"id":"n9","type":"text","text":"## 9. Evaluación y diagnóstico\n- MAE, MSE, RMSE, R² (train y crossval)\n- Real vs predicho y residuos \n- Alto error en ambos = infraajuste (bias)\n- Train bajo, test alto = sobreajuste (varianza) -> REGULARIZAR\n- Decido grado del polinomio y si hay necesidad de regularizar antes de usar test","x":480,"y":820,"width":400,"height":300,"color":"6"}
+	],
+	"edges":[
+		{"id":"e0","fromNode":"n0","fromSide":"right","toNode":"n1","toSide":"left"},
+		{"id":"e1","fromNode":"n1","fromSide":"right","toNode":"n2","toSide":"left"},
+		{"id":"e2","fromNode":"n2","fromSide":"right","toNode":"n3","toSide":"left"},
+		{"id":"e3","fromNode":"n3","fromSide":"bottom","toNode":"n4","toSide":"top"},
+		{"id":"e4","fromNode":"n4","fromSide":"left","toNode":"n5","toSide":"right"},
+		{"id":"e5","fromNode":"n5","fromSide":"left","toNode":"n6","toSide":"right"},
+		{"id":"e6","fromNode":"n6","fromSide":"left","toNode":"n7","toSide":"right"},
+		{"id":"e7","fromNode":"n7","fromSide":"bottom","toNode":"n8","toSide":"top"},
+		{"id":"e8","fromNode":"n8","fromSide":"right","toNode":"n9","toSide":"left"},
+		{"id":"e9","fromNode":"n9","fromSide":"right","toNode":"n10","toSide":"left"},
+		{"id":"e10","fromNode":"n10","fromSide":"right","toNode":"n11","toSide":"left"},
+		{"id":"e11","fromNode":"n11","fromSide":"bottom","toNode":"n12","toSide":"top"},
+		{"id":"eloop","fromNode":"n9","fromSide":"top","toNode":"n6","toSide":"bottom","label":"vuelve si falla el diagnóstico"},
+		{"id":"er","fromNode":"n12","fromSide":"left","toNode":"rules","toSide":"right","toEnd":"none"}
+	]
+}
